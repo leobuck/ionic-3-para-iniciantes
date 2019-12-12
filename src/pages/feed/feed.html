@@ -11,6 +11,9 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
   <ion-card *ngFor="let filme of lista_filmes">
 
@@ -47,6 +50,8 @@
         </ion-note>
       </ion-col>
     </ion-row>
+
+    <button ion-button block (click)="abrirDetalhes(filme)">Detalhes</button>
 
   </ion-card>
 
