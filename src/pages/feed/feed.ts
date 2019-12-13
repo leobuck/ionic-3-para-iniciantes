@@ -22,6 +22,7 @@ export class FeedPage {
   public loader;
   public refresher;
   public isRefreshing: boolean = false;
+  public infiniteScroll;
 
   // JSON
   public objeto_feed = {
@@ -34,6 +35,7 @@ export class FeedPage {
   }
 
   public lista_filmes = Array<any>();
+  public page = 1;
 
   public nome_usuario: string = "Leo Buck do Código";
 
@@ -76,16 +78,26 @@ export class FeedPage {
     this.navCtrl.push(FilmeDetalhesPage, { id: filme.id });
   }
 
-  carregarFilmes() {
+  doInfinite(infiniteScroll) {
+    this.page++;
+    this.infiniteScroll = infiniteScroll;
+    this.carregarFilmes(true);
+  }
+
+  carregarFilmes(newpage: boolean = false) {
     this.abreCarregando();
 
-    this.movieProvider.getPopularMovies().subscribe(
+    this.movieProvider.getPopularMovies(this.page).subscribe(
       data => {
         const response = (data as any);
         const objeto_retorno = JSON.parse(response._body);
-        this.lista_filmes = objeto_retorno.results;
 
-        console.log(objeto_retorno);
+        if (newpage) {
+          this.lista_filmes = this.lista_filmes.concat(objeto_retorno.results);
+          this.infiniteScroll.complete();
+        } else {
+          this.lista_filmes = objeto_retorno.results;
+        }
 
         this.fechaCarregando();
 
