@@ -1,3 +1,5 @@
+import { CameraPageModule } from './../pages/camera/camera.module';
+import { Camera } from '@ionic-native/camera';
 import { AtletasPageModule } from './../pages/atletas/atletas.module';
 import { FilmeDetalhesPageModule } from './../pages/filme-detalhes/filme-detalhes.module';
 import { PerfilPageModule } from './../pages/perfil/perfil.module';
@@ -22,6 +24,7 @@ import { HttpModule } from '@angular/http'
 import { MovieProvider } from '../providers/movie/movie';
 import { ConfigProvider } from '../providers/config/config';
 import { CartolaProvider } from '../providers/cartola/cartola';
+import { CameraProvider } from '../providers/camera/camera';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,8 @@ import { CartolaProvider } from '../providers/cartola/cartola';
     SobrePageModule,
     PerfilPageModule,
     FilmeDetalhesPageModule,
-    AtletasPageModule
+    AtletasPageModule,
+    CameraPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -54,10 +58,12 @@ import { CartolaProvider } from '../providers/cartola/cartola';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     MovieProvider,
     ConfigProvider,
-    CartolaProvider
+    CartolaProvider,
+    CameraProvider,
+    Camera
   ]
 })
-export class AppModule {}
+export class AppModule { }

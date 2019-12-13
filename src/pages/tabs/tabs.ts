@@ -1,3 +1,4 @@
+import { CameraPage } from './../camera/camera';
 import { AtletasPageModule } from './../atletas/atletas.module';
 import { ConfiguracoesPage } from './../configuracoes/configuracoes';
 import { FeedPage } from './../feed/feed';
@@ -17,6 +18,7 @@ export class TabsPage {
   tab4Root = FeedPage;
   tab5Root = ConfiguracoesPage;
   tab6Root = AtletasPage;
+  tab7Root = CameraPage;
 
   constructor() {
 

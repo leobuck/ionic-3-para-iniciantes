@@ -17,9 +17,9 @@ export class CartolaProvider {
     public http: Http,
     private _platform: Platform) {
 
-      if (this._platform.is("cordova")) {
-        this.basepath = "https://api.cartolafc.globo.com";
-      }
+    if (this._platform.is("cordova")) {
+      this.basepath = "https://api.cartolafc.globo.com";
+    }
   }
 
   atletas() {
